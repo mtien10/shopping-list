@@ -80,8 +80,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'fresherk1-app-db',
         'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'db',   # Or an IP Address that your DB is hosted on
+        'PASSWORD': 'manhtien123',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
@@ -125,7 +125,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Default primary key field type
+AUTH_USER_MODEL = 'app.User'
+
+
+
+# Default primary key field type cgi day a
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
