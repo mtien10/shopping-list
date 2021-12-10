@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from app.serializers import UserSerializer, UserLoginSerializer
 from rest_framework.views import APIView
 from rest_framework import status
-from django.contrib.auth.hashers import check_password, make_password
+from django.contrib.auth.hashers import make_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth import authenticate
 from django.conf import settings

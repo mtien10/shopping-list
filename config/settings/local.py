@@ -3,6 +3,7 @@ from datetime import timedelta
 
 INSTALLED_APPS = [
     'app',
+    'shopping',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
