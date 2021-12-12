@@ -127,8 +127,6 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'app.User'
 
-
-
 # Default primary key field type cgi day a
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

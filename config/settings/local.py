@@ -69,3 +69,8 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+import os
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]

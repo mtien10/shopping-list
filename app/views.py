@@ -8,9 +8,13 @@ from django.contrib.auth.hashers import make_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth import authenticate
 from django.conf import settings
+import redis
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.generics import GenericAPIView
+import jwt
+
+rd = redis.Redis(host='redis')
 
 
 @api_view(['GET'])
@@ -54,6 +58,9 @@ class UserLoginView(APIView):  # -> <- login
                     'access_expires': int(settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'].total_seconds()),
                     'refresh_expires': int(settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'].total_seconds())
                 }
+                # request.user = user
+                # request.session['user_id'] = user.id
+                # request.session['is-authenticated'] = True
                 return Response(data, status=status.HTTP_200_OK)
 
             return Response({
@@ -65,5 +72,3 @@ class UserLoginView(APIView):  # -> <- login
             'error_messages': serializer.errors,
             'error_code': 400
         }, status=status.HTTP_400_BAD_REQUEST)
-
-

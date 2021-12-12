@@ -11,7 +11,14 @@ class ShoppingList(models.Model):
         return self.name
 
 
+class ShoppingItems(models.Model):
+    id_shopping_list = models.ForeignKey(ShoppingList, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, unique=True)
+    quantity = models.IntegerField()
+    image = models.ImageField(upload_to='static/images')
+    descriptions = models.TextField()
+    complete = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
-# class ShoppingItems(models.Model):
-#     shoppinglist = models.ForeignKey(ShoppingList, on_delete=models.CASCADE)
-#     models.ImageField(upload_to='static/images')
+    def __str__(self):
+        return self.name

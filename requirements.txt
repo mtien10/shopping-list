@@ -5,3 +5,4 @@ sqlparse==0.4.2
 djangorestframework==3.12.4
 django-cors-headers
 mysqlclient>=2.0
+Pillow
