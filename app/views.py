@@ -14,6 +14,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.generics import GenericAPIView
 import jwt
 
+
 rd = redis.Redis(host='redis')
 
 
