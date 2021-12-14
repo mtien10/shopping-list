@@ -10,5 +10,6 @@ router.register('items', views.ShoppingItemsViewSet)
 app_name = 'shopping'
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('share-shopping-list/<pk>', views.share_shopping_list),
 ]

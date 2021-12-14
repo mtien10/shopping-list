@@ -6,3 +6,5 @@ djangorestframework==3.12.4
 django-cors-headers
 mysqlclient>=2.0
 Pillow
+djangorestframework_simplejwt
+redis

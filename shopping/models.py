@@ -6,6 +6,7 @@ class ShoppingList(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
     create_date = models.DateTimeField(auto_now_add=True)
+    share_users = models.ManyToManyField(User, related_name='share_users')
 
     def __str__(self):
         return self.name
