@@ -9,7 +9,9 @@ class AuthenticateMiddleware(object):
         self.get_response = get_response
 
     def __call__(self, request):
-        get_access_token = request.COOKIES.get['access_token']
+        print(request.COOKIES)
+        get_access_token = request.COOKIES.get('access_token')
+        print(get_access_token)
         get_refresh_token = rd.get('refresh_token')
 
         if get_access_token:

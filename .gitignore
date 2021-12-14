@@ -90,5 +90,7 @@ db.sqlite3
 .env
 venv
 config/settings/local.py
+
 data/mysql/db
 test_cors.html
+

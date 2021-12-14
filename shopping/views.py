@@ -1,9 +1,8 @@
 from rest_framework import viewsets, permissions, mixins, status
 from rest_framework.response import Response
-
 from shopping.serializers import ShoppingListSerializer
 from shopping import serializers
-from shopping.models import ShoppingList
+from shopping.models import ShoppingList, ShoppingItems
 
 
 class ShoppingListViewSet(viewsets.ModelViewSet):
@@ -12,25 +11,18 @@ class ShoppingListViewSet(viewsets.ModelViewSet):
     permissions_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        user_id = self.request['user_id']
-        return self.queryset.filter(user=user_id)
+        return self.queryset.filter(user=self.request.user)
+
+
+class ShoppingItemsViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.ShoppingItemsSerializer
+    queryset = ShoppingItems.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return self.queryset.filter(id_shopping_list__user=self.request.user)
 
 
 
-        # print(self.request.user)
-        # try:
-        #     isAuthenticated = self.request.session['is-authenticated']
-        #     if (isAuthenticated):
-        #         userId = self.request.session['user_id']
-        #         return self.queryset.filter(user=userId)
-        #     else:
-        #         pass
-        # except Exception as e:
-        #     pass
-
-    
-
-    # def perform_create(self, serializer):
-    #     serializer.save(id=self.request.user.id)
 
 
