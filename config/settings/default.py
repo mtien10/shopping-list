@@ -25,6 +25,8 @@ SECRET_KEY = 'django-insecure-gmpr94!hm405(v4&$ok9$@mtd09pb94$7!bl0_$s0)7a4a%a66
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+APPEND_SLASH = False
+
 ALLOWED_HOSTS = []
 
 
@@ -85,7 +87,7 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
+AUTHENTICATION_BACKENDS  = ['django.contrib.auth.backends.ModelBackend']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
