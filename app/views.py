@@ -41,7 +41,7 @@ class UserSignUpView(APIView):
             }, status=status.HTTP_400_BAD_REQUEST)
 
 
-class UserLoginView(APIView):  # -> <- login
+class UserLoginView(APIView):
 
     def post(self, request):
         serializer = UserLoginSerializer(data=request.data)
@@ -59,9 +59,7 @@ class UserLoginView(APIView):  # -> <- login
                     'access_expires': int(settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'].total_seconds()),
                     'refresh_expires': int(settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'].total_seconds())
                 }
-                # request.user = user
-                # request.session['user_id'] = user.id
-                # request.session['is-authenticated'] = True
+
                 return Response(data, status=status.HTTP_200_OK)
 
             return Response({
