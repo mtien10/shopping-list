@@ -13,7 +13,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.generics import GenericAPIView
 import jwt
-
+from rest_framework_simplejwt.tokens import RefreshToken
 
 rd = redis.Redis(host='redis')
 
@@ -73,3 +73,11 @@ class UserLoginView(APIView):  # -> <- login
             'error_messages': serializer.errors,
             'error_code': 400
         }, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LogoutView(APIView):
+    def post(self, request):
+        response = Response()
+        response.delete_cookie(key='access_token')
+        response.data = {"notice": "logged out successfully!"}
+        return response
