@@ -89,6 +89,6 @@ db.sqlite3
 .idea
 .env
 venv
-config/settings/local.py
+#config/settings/local.py
 test_cors.html
 data/mysql/db
