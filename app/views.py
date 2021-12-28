@@ -1,6 +1,8 @@
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
+from app.models import User
 from app.serializers import UserSerializer, UserLoginSerializer
 from rest_framework.views import APIView
 from rest_framework import status
@@ -29,6 +31,10 @@ class UserSignUpView(APIView):
         if serializer.is_valid():
             serializer.validated_data['password'] = make_password(serializer.validated_data['password'])
             user = serializer.save()
+            email = serializer.data['email']
+            check_user = User.objects.get(email=email)
+            if not check_user:
+                raise ValueError("No email")
 
             return JsonResponse({
                 'message': 'Register successful !'
@@ -41,7 +47,7 @@ class UserSignUpView(APIView):
             }, status=status.HTTP_400_BAD_REQUEST)
 
 
-class UserLoginView(APIView):  # -> <- login
+class UserLoginView(APIView):
 
     def post(self, request):
         serializer = UserLoginSerializer(data=request.data)
@@ -59,9 +65,7 @@ class UserLoginView(APIView):  # -> <- login
                     'access_expires': int(settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'].total_seconds()),
                     'refresh_expires': int(settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'].total_seconds())
                 }
-                # request.user = user
-                # request.session['user_id'] = user.id
-                # request.session['is-authenticated'] = True
+
                 return Response(data, status=status.HTTP_200_OK)
 
             return Response({

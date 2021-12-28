@@ -40,8 +40,3 @@ class ShoppingItemsViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return self.queryset.filter(id_shopping_list__user=self.request.user)
-
-
-
-
-
